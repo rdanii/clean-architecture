@@ -1,7 +1,6 @@
 package app
 
 import (
-	"clean-architecture/auth"
 	"clean-architecture/delivery"
 	"clean-architecture/repository"
 	"clean-architecture/usecase"
@@ -19,10 +18,7 @@ func InitRouter(postgresConn *gorm.DB) *gin.Engine {
 	router.Use(CORSMiddleware())
 
 	svc := router.Group("/")
-	svc.Use(auth.BasicAuth_v2())
-	{
-		svc.GET("/ping", d.Ping)
-	}
+	svc.GET("/ping", d.Ping)
 
 	router.NoRoute(d.NoRoute)
 
